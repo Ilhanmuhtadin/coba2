@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css10/style.css') }}">
+  
+   <script>
+    function validateNumericInput(inputElement) {
+      var value = inputElement.value;
+      if (isNaN(value)) {
+        inputElement.setCustomValidity("Please enter a numeric value.");
+      } else {
+        inputElement.setCustomValidity('');
+      }
+    }
+  </script>
+</head>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Predict Salary Analysis</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post" >
+      <input type="number" name="experience" placeholder="Experience" required="required" min="0" max="99999999" />
+      <input type="number" name="test_score" placeholder="Test Score" required="required" min="0" max="99999999"/>
+      <input type="number" name="interview_score" placeholder="Interview Score" required="required" min="0" step="0.01" max="99999999" />
+
+
+
+      
+      
+      <select id="cars" name="carlist" required="required">
+        <option value="" disabled selected style="opacity: 0.01;">Select Merek Car</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+    
+    <br>
+    <br>
+    {{ prediction_text }}
+  </div>
+</body>
+</html>
